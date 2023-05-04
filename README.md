@@ -20,7 +20,7 @@ ____
 ![](https://github.com/GuliyaSib/movie-recomendation/blob/main/image/word_cloud.png)
 ____
 ## Component diagram
-![](https://github.com/GuliyaSib/movie-recomendation/blob/main/image/Component_diagram.png)
+![](https://github.com/GuliyaSib/movie-recomendation/blob/main/image/Component_diagram_.png)
 
 ## Activity diagram
 ![](https://github.com/GuliyaSib/movie-recomendation/blob/main/image/Activity_diagram.png)
