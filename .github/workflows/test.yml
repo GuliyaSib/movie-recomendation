@@ -1,0 +1,7 @@
+- name: Run multiple Kaggle commands
+      run:
+        kaggle --version
+        kaggle competitions list
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }
