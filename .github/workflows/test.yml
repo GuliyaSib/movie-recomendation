@@ -1,7 +1,5 @@
 name: Kaggle API Action Example
-
 on: push
-
 jobs:
   build:
     name: Run Kaggle API Commands
