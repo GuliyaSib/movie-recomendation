@@ -1,7 +1,29 @@
-- name: Run multiple Kaggle commands
-      run:
+name: Kaggle API Action Example
+
+on: push
+
+jobs:
+  build:
+    name: Run Kaggle API Commands
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.6
+        architecture: x64
+    - name: Setup Kaggle
+      run: pip install kaggle
+    - name: Run Kaggle command
+      run: kaggle competitions list 
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KaggleUsername }}
+        KAGGLE_KEY: ${{ secrets.KaggleKey }}
+    - name: Run multiple Kaggle commands
+      run: |
         kaggle --version
         kaggle competitions list
       env:
         KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
