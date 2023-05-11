@@ -24,3 +24,10 @@ jobs:
           mkdir -p data
           kaggle datasets download -d rounakbanik/the-movies-dataset -p data/
           echo "dataset_downloaded=true" >> $GITHUB_ENV
+      - name: Unzip dataset
+        run: unzip -qo data/*.zip -d data/
+      - name: Commit and Push changes - 1
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Added data'
+          add: 'data/*'
