@@ -27,8 +27,10 @@ jobs:
       - name: Unzip dataset
         run: unzip -qo data/*.zip -d data/
       - name: Commit and Push changes - 1
-        uses: ad-m/github-push-action@v1
+        uses: ad-m/github-push-action@v2
         with:
             repo: https://<PAT>@github.com/GuliyaSib/movie-recomendation.git
+            persist-credentials: false
+            fetch-depth: 0 
             branch: main
             message: 'Automated commit and push'
