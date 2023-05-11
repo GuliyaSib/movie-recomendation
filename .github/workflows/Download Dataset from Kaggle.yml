@@ -27,7 +27,8 @@ jobs:
       - name: Unzip dataset
         run: unzip -qo data/*.zip -d data/
       - name: Commit and Push changes - 1
-        uses: EndBug/add-and-commit@v9
+        uses: ad-m/github-push-action@v1
         with:
-          message: 'Added data'
-          add: 'data/*'
+            repo: https://<PAT>@github.com/GuliyaSib/movie-recomendation.git
+            branch: main
+            message: 'Automated commit and push'
