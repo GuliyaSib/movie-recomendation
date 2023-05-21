@@ -31,7 +31,8 @@ jobs:
         with:
           name: csv-files
           path: |
-            data/*.csv
+            data/ratins_small.csv
+            data/movies_metadata.csv
       - name: Install Python
         uses: actions/setup-python@v4.6.0
         with:
