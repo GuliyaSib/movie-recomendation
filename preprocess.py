@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 from datetime import date
 
-movie_metadata = pd.read_csv('movies_metadata.csv', low_memory=False)[['id','original_title', 'overview', 'vote_count']].dropna()
+movie_metadata = pd.read_csv('data/movies_metadata.csv', low_memory=False)[['id','original_title', 'overview', 'vote_count']].dropna()
 movie_metadata.set_index('id', inplace=True)
 
-df = pd.read_csv('ratings_small.csv')
+df = pd.read_csv('data/ratings_small.csv')
 df['timestamp'] = [date.fromtimestamp(x) for x in df['timestamp']]
 df.rename(columns={"timestamp": "date"}, inplace=True)
 
