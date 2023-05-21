@@ -1,0 +1,6 @@
+pandas
+numpy
+collections
+sklearn
+keras
+scipy
