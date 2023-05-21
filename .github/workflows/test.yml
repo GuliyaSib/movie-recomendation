@@ -24,7 +24,8 @@ jobs:
           mkdir -p data
           kaggle datasets download -d rounakbanik/the-movies-dataset -p data/
           echo "dataset_downloaded=true" >> $GITHUB_ENV
-          unzip data.zip
+      - name: Unzip dataset
+        run: unzip -qo data/*.zip -d data/
       - name: Upload CSV files as artifact - 1
         uses: actions/upload-artifact@v3.1.2
         with:
