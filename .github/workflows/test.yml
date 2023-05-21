@@ -30,8 +30,8 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: csv-files
-          paths: |
-            data/ratins_small.csv
+          path: |
+            data/ratings_small.csv
             data/movies_metadata.csv
       - name: Install Python
         uses: actions/setup-python@v4.6.0
