@@ -48,7 +48,7 @@ jobs:
 
   train_model:
     runs-on: ubuntu-latest
-    needs: split_data
+    needs: download-dataset
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -63,29 +63,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: index_file
-
-      - name: train model
-        run: |
-          python model.py
-
-      - name: Upload a Build Artifact - 2
-        uses: actions/upload-artifact@v3.1.2
-        with:
-          name: trained_model
-          path: model1
-
-  train_model:
-    runs-on: ubuntu-latest
-    needs: download-dataset
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install dependencies
-        run: pip install -r req_train.txt
-
-      - name: Download preprocess
-        uses: actions/download-artifact@v3
-        with:
-          name: train_file
 
       - name: train model
         run: |
