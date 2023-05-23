@@ -47,5 +47,25 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: preprocess_file
-          path: |
-            data.csv
+          path: data.csv
+
+  train_model:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download_prep 
+        uses: actions/download-artifact@v3
+        with:
+          name: preprocess_file
+
+      - name: Install dependencies
+        run: pip install -r req.txt
+
+      - name: train model
+        run: |
+          py model.py
+
+      - name: Upload a Build Artifact - 2
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: trained_model
+          path: model1
