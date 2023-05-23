@@ -46,6 +46,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r req_train.txt
 
+      - name: Download preprocess
+        uses: actions/download-artifact@v3
+        with:
+          name: preprocess_file
+
       - name: train model
         run: |
           python model.py
