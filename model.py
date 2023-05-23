@@ -7,9 +7,6 @@ from keras.models import Model
 from sklearn.metrics import mean_squared_error
 
 
-#movie_metadata = pd.read_csv('movies_metadata.csv', low_memory=False)[['id','original_title', 'overview', 'vote_count']].dropna()
-#movie_metadata.set_index('id', inplace=True)
-
 df_filterd = pd.read_csv('data.csv')
 
 # Testingsize
@@ -18,13 +15,19 @@ n = 10000
 # Split train- & testset
 df_train = df_filterd[:-n]
 df_test = df_filterd[-n:]
+
+# Split train- & testset
+# Create user- & movie-id mapping
+user_id_mapping = {id:i for i, id in enumerate(df_filterd['userId'].unique())}
+movie_id_mapping = {id:i for i, id in enumerate(df_filterd['movieId'].unique())}
+
+
+# Create correctly mapped train- & testset
 train_user_data = df_train['userId']
 train_movie_data = df_train['movieId']
 test_user_data = df_test['userId']
 test_movie_data = df_test['movieId']
 
-user_id_mapping = {id:i for i, id in enumerate(df_filterd['userId'].unique())}
-movie_id_mapping = {id:i for i, id in enumerate(df_filterd['movieId'].unique())}
 
 # Get input variable-sizes
 users = len(user_id_mapping)
@@ -72,7 +75,7 @@ model.fit([train_user_data, train_movie_data],
           df_train['rating'],
           batch_size=256, 
           epochs=1,
-          validation_split=0.1,
+          validation_split=0.3,
           shuffle=True)
 
 # Test model
