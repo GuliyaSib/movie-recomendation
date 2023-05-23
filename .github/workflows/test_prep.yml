@@ -30,26 +30,90 @@ jobs:
       - name: Preprocessing
         run: |
           python preprocess.py
-      - name: Upload a Build Artifact - 2
+      - name: train_saved Artict
         uses: actions/upload-artifact@v3.1.2
         with:
-          name: preprocess_file
-          path: data.csv
+          name: train_file
+          path: train.csv
+      - name: test_saved Artict
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: test_file
+          path: test.csv
+      - name: index Artict
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: index_file
+          path: index.txt
 
   train_model:
     runs-on: ubuntu-latest
-    needs: download-dataset
+    needs: split_data
     steps:
       - uses: actions/checkout@v3
-        with:
-          name: preprocess_file
       - name: Install dependencies
         run: pip install -r req_train.txt
 
       - name: Download preprocess
         uses: actions/download-artifact@v3
         with:
-          name: preprocess_file
+          name: train_file
+
+      - name: Download preprocess
+        uses: actions/download-artifact@v3
+        with:
+          name: index_file
+
+      - name: train model
+        run: |
+          python model.py
+
+      - name: Upload a Build Artifact - 2
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: trained_model
+          path: model1
+
+  train_model:
+    runs-on: ubuntu-latest
+    needs: split_data
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r req_train.txt
+
+      - name: Download preprocess
+        uses: actions/download-artifact@v3
+        with:
+          name: train_file
+
+      - name: train model
+        run: |
+          python model.py
+
+      - name: Upload a Build Artifact - 2
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: trained_model
+          path: model1
+
+  train_model:
+    runs-on: ubuntu-latest
+    needs: split_data
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r req_train.txt
+
+      - name: Download dataset
+        uses: actions/download-artifact@v3
+        with:
+          name: test_file
+
+      - name: Download model
+        uses: actions/download-artifact@v3
+        with:
+          name: trained_model
 
       - name: train model
         run: |

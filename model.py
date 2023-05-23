@@ -1,13 +1,12 @@
 import pandas as pd
 import numpy as np
-from datetime import date
 # To create deep learning models
 from keras.layers import Input, Embedding, Reshape, Dot, Concatenate, Dense, Dropout
 from keras.models import Model
 from sklearn.metrics import mean_squared_error
 
 
-df_filterd = pd.read_csv('data.csv')
+df_filterd = pd.read_csv('train.csv')
 
 # Testingsize
 n = 10000
@@ -18,8 +17,10 @@ df_test = df_filterd[-n:]
 
 # Split train- & testset
 # Create user- & movie-id mapping
-user_id_mapping = {id:i for i, id in enumerate(df_filterd['userId'].unique())}
-movie_id_mapping = {id:i for i, id in enumerate(df_filterd['movieId'].unique())}
+with open('index.txt', 'w') as f:
+    users, movies = f.read().split()
+
+users, movies = int(users), int(movies)
 
 
 # Create correctly mapped train- & testset
@@ -29,9 +30,6 @@ test_user_data = df_test['userId']
 test_movie_data = df_test['movieId']
 
 
-# Get input variable-sizes
-users = max(user_id_mapping)
-movies = max(movie_id_mapping)
 embedding_size = 10
 
 # Setup variables
@@ -86,4 +84,4 @@ y_true = df_test['rating'].values
 rmse = np.sqrt(mean_squared_error(y_pred=y_pred, y_true=y_true))
 print('\n\nTesting Result With Keras Deep Learning: {:.4f} RMSE'.format(rmse))
 
-model.save('model1')
+model.save('model1.h5')
