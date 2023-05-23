@@ -59,6 +59,9 @@ jobs:
         with:
           name: preprocess_file
 
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Install dependencies
         run: pip install -r req.txt
 
