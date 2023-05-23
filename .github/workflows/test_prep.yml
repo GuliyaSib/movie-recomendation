@@ -53,15 +53,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: download-dataset
     steps:
-
-      - name: Download_prep 
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v3
         with:
           name: preprocess_file
-
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Install dependencies
         run: pip install -r req.txt
 
