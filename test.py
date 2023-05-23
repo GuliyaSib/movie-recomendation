@@ -4,7 +4,7 @@ from keras.models import load_model
 from sklearn.metrics import mean_squared_error
 
 model = load_model('model1.h5')
-df = pd.read_csv('train.csv')
+df = pd.read_csv('test.csv')
 
 test_user_data = df['userId']
 test_movie_data = df['movieId']
