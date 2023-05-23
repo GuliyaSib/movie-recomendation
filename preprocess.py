@@ -17,8 +17,8 @@ n = int(len(df_filtered) * 0.1)
 df_train = df_filtered[:-n]
 df_test = df_filtered[-n:]
 
-df_train.to_cvd('train.csv', index=False)
-df_test.to_cvd('test.csv', index=False)
+df_train.to_csv('train.csv', index=False)
+df_test.to_csv('test.csv', index=False)
 
 users = max(user_id_mapping)
 movies = max(movie_id_mapping)
