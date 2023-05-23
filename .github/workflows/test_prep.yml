@@ -25,7 +25,7 @@ jobs:
 
       - name: download source data
         run: |
-          gdown "https://docs.google.com/uc?id=1ahCCfKV8AbNWbgS6qvSO3TtHNVtgtS8K"
+          gdown "https://docs.google.com/uc?id=14l62l5_wJxepLQ5CHxlriQrRk-cutsSU"
 
       - name: Preprocessing
         run: |
