@@ -13,9 +13,6 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
           lfs: true
-      - name: download source data
-        run: |
-          wget -O ratings_small.csv "https://docs.google.com/uc?export=download&id=1ahCCfKV8AbNWbgS6qvSO3TtHNVtgtS8K"
 
       - name: Install Python
         uses: actions/setup-python@v4.6.0
@@ -25,6 +22,11 @@ jobs:
         run: pip install --upgrade pip
       - name: Install dependencies
         run: pip install -r req.txt
+
+      - name: download source data
+        run: |
+          gdown "https://docs.google.com/uc?id=1ahCCfKV8AbNWbgS6qvSO3TtHNVtgtS8K"
+
       - name: Preprocessing
         run: |
           python preprocess.py
