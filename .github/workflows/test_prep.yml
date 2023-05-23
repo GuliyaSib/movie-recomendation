@@ -72,7 +72,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.2
         with:
           name: trained_model
-          path: model1
+          path: model1.h5
 
   test-model:
     runs-on: ubuntu-latest
