@@ -100,11 +100,11 @@ movie_id_input = Input(shape=[1], name='movie')
 
 # Create embedding layers for users and movies
 user_embedding = Embedding(output_dim=embedding_size, 
-                           input_dim=users,
+                           input_dim=users + 1,
                            input_length=1, 
                            name='user_embedding')(user_id_input)
 movie_embedding = Embedding(output_dim=embedding_size, 
-                            input_dim=movies,
+                            input_dim=movies + 1,
                             input_length=1, 
                             name='item_embedding')(movie_id_input)
 
