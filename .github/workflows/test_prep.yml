@@ -44,7 +44,7 @@ jobs:
         with:
           name: preprocess_file
       - name: Install dependencies
-        run: pip install -r req.txt
+        run: pip install -r req_train.txt
 
       - name: train model
         run: |
