@@ -76,7 +76,7 @@ jobs:
 
   train_model:
     runs-on: ubuntu-latest
-    needs: split_data
+    needs: download-dataset
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
@@ -97,9 +97,9 @@ jobs:
           name: trained_model
           path: model1
 
-  train_model:
+  test-model:
     runs-on: ubuntu-latest
-    needs: split_data
+    needs: train_model
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
