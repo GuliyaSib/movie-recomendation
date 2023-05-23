@@ -61,7 +61,7 @@ jobs:
 
       - name: train model
         run: |
-          py model.py
+          python model.py
 
       - name: Upload a Build Artifact - 2
         uses: actions/upload-artifact@v3.1.2
