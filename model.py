@@ -17,7 +17,7 @@ df_test = df_filterd[-n:]
 
 # Split train- & testset
 # Create user- & movie-id mapping
-with open('index.txt', 'w') as f:
+with open('index.txt') as f:
     users, movies = f.read().split()
 
 users, movies = int(users), int(movies)
