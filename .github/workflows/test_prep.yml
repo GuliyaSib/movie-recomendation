@@ -1,7 +1,6 @@
 name: Download Dataset from Kaggle
 
-on:
-  pull:
+on: [push]
 
 jobs:
   download-dataset:
