@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import date
 
-df = pd.read_csv('ratings_small.csv')
+df = pd.read_csv('data/ratings_small.csv')
 df['timestamp'] = [date.fromtimestamp(x) for x in df['timestamp']]
 df.rename(columns={"timestamp": "date"}, inplace=True)
 
