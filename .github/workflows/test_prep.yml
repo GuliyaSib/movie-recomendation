@@ -13,7 +13,24 @@ jobs:
           submodules: 'recursive'
           fetch-depth: 0
           lfs: true
-
+      - name: Install Kaggle API
+        run: pip install kaggle
+      - name: download source data
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: |
+          mkdir -p data
+          kaggle datasets download -d rounakbanik/the-movies-dataset -p data/
+          echo "dataset_downloaded=true" >> $GITHUB_ENV
+      - name: Unzip dataset
+        run: unzip -qo data/*.zip -d data/
+      - name: Upload CSV files as artifact - 1
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: csv-files
+          path: |
+            data/ratings_small.csv
       - name: Install Python
         uses: actions/setup-python@v4.6.0
         with:
@@ -22,11 +39,6 @@ jobs:
         run: pip install --upgrade pip
       - name: Install dependencies
         run: pip install -r req.txt
-
-      - name: download source data
-        run: |
-          gdown "https://docs.google.com/uc?id=14l62l5_wJxepLQ5CHxlriQrRk-cutsSU"
-
       - name: Preprocessing
         run: |
           python preprocess.py
