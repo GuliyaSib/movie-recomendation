@@ -1,4 +1,4 @@
-name: Download Dataset from Kaggle
+name: Movie recommendation
 
 on: [push]
 
