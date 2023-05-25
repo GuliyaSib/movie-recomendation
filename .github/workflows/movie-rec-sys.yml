@@ -78,7 +78,7 @@ jobs:
 
       - name: train model
         run: |
-          python learning_and_saving.py
+          python learn_save.py
 
       - name: Upload a Build Artifact - 2
         uses: actions/upload-artifact@v3.1.2
