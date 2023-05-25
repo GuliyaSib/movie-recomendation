@@ -22,14 +22,13 @@ with open('index.txt') as f:
 
 users, movies = int(users), int(movies)
 
-
 # Create correctly mapped train- & testset
 train_user_data = df_train['userId']
 train_movie_data = df_train['movieId']
 test_user_data = df_test['userId']
 test_movie_data = df_test['movieId']
 
-
+# Deep Learning With Keras
 embedding_size = 10
 
 # Setup variables
@@ -80,14 +79,10 @@ model.fit([train_user_data, train_movie_data],
 y_pred = model.predict([test_user_data, test_movie_data])
 y_true = df_test['rating'].values
 
-#  Compute RMSE
-rmse = np.sqrt(mean_squared_error(y_pred=y_pred, y_true=y_true))
-print('\n\nTesting Result With Keras Deep Learning: {:.4f} RMSE'.format(rmse))
-
 model.save('model1.h5')
 
 
-# Create user- & movie-id mapping
+# Matrix Factorisation With Keras And Gradient Descent
 
 # Get input variable-sizes
 embedding_size = 20
@@ -124,16 +119,12 @@ model_2.compile(loss='mse', optimizer='adam')
 model_2.fit([train_user_data, train_movie_data],
           df_train['rating'],
           batch_size=256, 
-          epochs=1,
+          epochs=3,
           validation_split=0.1,
           shuffle=True)
 
 # Test model
 y_pred = model_2.predict([test_user_data, test_movie_data])
 y_true = df_test['rating'].values
-
-#  Compute RMSE
-rmse = np.sqrt(mean_squared_error(y_pred=y_pred, y_true=y_true))
-print('\n\nTesting Result With Keras Matrix-Factorization: {:.4f} RMSE'.format(rmse))
 
 model_2.save('model2.h5')
