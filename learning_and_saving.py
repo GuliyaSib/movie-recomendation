@@ -15,7 +15,6 @@ n = 10000
 df_train = df_filterd[:-n]
 df_test = df_filterd[-n:]
 
-# Split train- & testset
 # Create user- & movie-id mapping
 with open('index.txt') as f:
     users, movies = f.read().split()
@@ -28,15 +27,14 @@ train_movie_data = df_train['movieId']
 test_user_data = df_test['userId']
 test_movie_data = df_test['movieId']
 
-# Deep Learning With Keras
+###### Deep Learning With Keras
 embedding_size = 10
-
 # Setup variables
 user_embedding_size = 20
 movie_embedding_size = 10
 
 
-##### Create model
+#Create model
 # Set input layers
 user_id_input = Input(shape=[1], name='user')
 movie_id_input = Input(shape=[1], name='movie')
@@ -74,21 +72,13 @@ model.fit([train_user_data, train_movie_data],
           epochs=1,
           validation_split=0.3,
           shuffle=True)
-
-# Test model
-y_pred = model.predict([test_user_data, test_movie_data])
-y_true = df_test['rating'].values
-
 model.save('model1.h5')
 
 
-# Matrix Factorisation With Keras And Gradient Descent
-
+##### Matrix Factorisation With Keras And Gradient Descent
 # Get input variable-sizes
 embedding_size = 20
-
-
-##### Create model
+#Create model
 # Set input layers
 user_id_input = Input(shape=[1], name='user')
 movie_id_input = Input(shape=[1], name='movie')
@@ -114,7 +104,6 @@ y = Dot(1, normalize=False)([user_vector, movie_vector])
 model_2 = Model(inputs=[user_id_input, movie_id_input], outputs=y)
 model_2.compile(loss='mse', optimizer='adam')
 
-
 # Fit model
 model_2.fit([train_user_data, train_movie_data],
           df_train['rating'],
@@ -122,9 +111,4 @@ model_2.fit([train_user_data, train_movie_data],
           epochs=3,
           validation_split=0.1,
           shuffle=True)
-
-# Test model
-y_pred = model_2.predict([test_user_data, test_movie_data])
-y_true = df_test['rating'].values
-
 model_2.save('model2.h5')
