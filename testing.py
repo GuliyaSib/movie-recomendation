@@ -33,5 +33,5 @@ rmse_2 = np.sqrt(mean_squared_error(y_pred=y_pred, y_true=y_true))
 print('\n\nTesting Result With Keras Deep Learning: {:.4f} RMSE'.format(rmse_2))
 
 with open('results.txt', 'w') as f:
-    print('Keras Deep Learning', "%.1f" % rmse_1, result_time_1, file=f)
-    print('Keras Matrix-Factorization', "%.1f" % rmse_2, result_time_2, file=f)
+    print('Keras Deep Learning: rmse=', "%.1f" % rmse_1, ', duration=', "%.1f" % result_time_1, file=f)
+    print('Keras Matrix-Factorization: rmse=', "%.1f" % rmse_2, ', duration=', "%.1f" % result_time_2, file=f)
